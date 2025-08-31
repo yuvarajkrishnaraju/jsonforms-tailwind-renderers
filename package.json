@@ -1,0 +1,53 @@
+{
+  "name": "jsonforms-tailwind-renderers",
+  "version": "1.0.0",
+  "description": "Modern JSONForms renderers built with React and Tailwind CSS",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.0",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.0.0",
+    "react-icons": "^5.0.0",
+    "tslib": "^2.6.0"
+  },
+  "dependencies": {
+    "clsx": "^2.0.0"
+  },
+  "keywords": [
+    "jsonforms",
+    "react",
+    "tailwind",
+    "form",
+    "renderer",
+    "json-schema"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONForms Tailwind Renderers - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            prefix: 'tw-',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tw-jsonforms-container {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        
+        @keyframes tw-fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tw-animate-fade-in {
+            animation: tw-fadeIn 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="tw-bg-gray-50 tw-min-h-screen">
+    <div class="tw-jsonforms-container">
+        <!-- Header -->
+        <header class="tw-text-center tw-mb-12">
+            <h1 class="tw-text-4xl tw-font-bold tw-text-gray-900 tw-mb-4">
+                JSONForms Tailwind Renderers
+            </h1>
+            <p class="tw-text-xl tw-text-gray-600 tw-max-w-3xl tw-mx-auto">
+                A modern React component library for building dynamic forms with JSON Schema, 
+                featuring beautiful Tailwind CSS styling and comprehensive field type support.
+            </p>
+        </header>
+
+        <!-- Features Grid -->
+        <section class="tw-mb-16">
+            <h2 class="tw-text-3xl tw-font-semibold tw-text-gray-900 tw-text-center tw-mb-8">
+                ✨ Features
+            </h2>
+            <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
+                <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                    <div class="tw-w-12 tw-h-12 tw-bg-primary-100 tw-rounded-lg tw-flex tw-items-center tw-justify-center tw-mb-4">
+                        <span class="tw-text-2xl">🎨</span>
+                    </div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">Modern Design</h3>
+                    <p class="tw-text-gray-600">Built with Tailwind CSS 4.1+ for a clean, professional look with custom `tw-` prefix.</p>
+                </div>
+                
+                <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                    <div class="tw-w-12 tw-h-12 tw-bg-primary-100 tw-rounded-lg tw-flex tw-items-center tw-justify-center tw-mb-4">
+                        <span class="tw-text-2xl">⚡</span>
+                    </div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">React 18+</h3>
+                    <p class="tw-text-gray-600">Built with modern React patterns, hooks, and TypeScript for optimal performance.</p>
+                </div>
+                
+                <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                    <div class="tw-w-12 tw-h-12 tw-bg-primary-100 tw-rounded-lg tw-flex tw-items-center tw-justify-center tw-mb-4">
+                        <span class="tw-text-2xl">🔧</span>
+                    </div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">Flexible Layouts</h3>
+                    <p class="tw-text-gray-600">Vertical, horizontal, and group layouts with responsive design and custom animations.</p>
+                </div>
+                
+                <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                    <div class="tw-w-12 tw-h-12 tw-bg-primary-100 tw-rounded-lg tw-flex tw-items-center tw-justify-center tw-mb-4">
+                        <span class="tw-text-2xl">📱</span>
+                    </div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">Responsive</h3>
+                    <p class="tw-text-gray-600">Mobile-first design that works perfectly on all screen sizes and devices.</p>
+                </div>
+                
+                <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                    <div class="tw-w-12 tw-h-12 tw-bg-primary-100 tw-rounded-lg tw-flex tw-items-center tw-justify-center tw-mb-4">
+                        <span class="tw-text-2xl">♿</span>
+                    </div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">Accessible</h3>
+                    <p class="tw-text-gray-600">WCAG compliant form controls with proper ARIA labels and keyboard navigation.</p>
+                </div>
+                
+                <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                    <div class="tw-w-12 tw-h-12 tw-bg-primary-100 tw-rounded-lg tw-flex tw-items-center tw-justify-center tw-mb-4">
+                        <span class="tw-text-2xl">🎯</span>
+                    </div>
+                    <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-2">TypeScript</h3>
+                    <p class="tw-text-gray-600">Full TypeScript support with comprehensive types and IntelliSense.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supported Field Types -->
+        <section class="tw-mb-16">
+            <h2 class="tw-text-3xl tw-font-semibold tw-text-gray-900 tw-text-center tw-mb-8">
+                🎯 Supported Field Types
+            </h2>
+            <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-4">
+                <div class="tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200 tw-text-center">
+                    <h4 class="tw-font-semibold tw-text-gray-900 tw-mb-2">Text Inputs</h4>
+                    <p class="tw-text-sm tw-text-gray-600">Text, email, password, URL, tel, date, time</p>
+                </div>
+                <div class="tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200 tw-text-center">
+                    <h4 class="tw-font-semibold tw-text-gray-900 tw-mb-2">Number Inputs</h4>
+                    <p class="tw-text-sm tw-text-gray-600">Number, integer with min/max constraints</p>
+                </div>
+                <div class="tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200 tw-text-center">
+                    <h4 class="tw-font-semibold tw-text-gray-900 tw-mb-2">Selection</h4>
+                    <p class="tw-text-sm tw-text-gray-600">Dropdown, checkbox, multi-select</p>
+                </div>
+                <div class="tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200 tw-text-center">
+                    <h4 class="tw-font-semibold tw-text-gray-900 tw-mb-2">Complex Types</h4>
+                    <p class="tw-text-sm tw-text-gray-600">Arrays, objects, nested structures</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start -->
+        <section class="tw-mb-16">
+            <h2 class="tw-text-3xl tw-font-semibold tw-text-gray-900 tw-text-center tw-mb-8">
+                🚀 Quick Start
+            </h2>
+            <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-4">Installation</h3>
+                <div class="tw-bg-gray-900 tw-text-green-400 tw-p-4 tw-rounded-lg tw-font-mono tw-text-sm tw-overflow-x-auto">
+                    <pre><code>npm install jsonforms-tailwind-renderers
+npm install react react-dom</code></pre>
+                </div>
+                
+                <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-4 tw-mt-6">Basic Usage</h3>
+                <div class="tw-bg-gray-900 tw-text-green-400 tw-p-4 tw-rounded-lg tw-font-mono tw-text-sm tw-overflow-x-auto">
+                    <pre><code>import { JsonForms } from 'jsonforms-tailwind-renderers';
+
+const schema = {
+  type: 'object',
+  properties: {
+    name: { type: 'string', title: 'Name' },
+    email: { type: 'string', format: 'email', title: 'Email' }
+  },
+  required: ['name', 'email']
+};
+
+function MyForm() {
+  const [data, setData] = useState({});
+  
+  return (
+    &lt;JsonForms
+      schema={schema}
+      data={data}
+      onChange={setData}
+    /&gt;
+  );
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tailwind CSS Setup -->
+        <section class="tw-mb-16">
+            <h2 class="tw-text-3xl tw-font-semibold tw-text-gray-900 tw-text-center tw-mb-8">
+                🎨 Tailwind CSS Setup
+            </h2>
+            <div class="tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+                <div class="tw-alert tw-alert-info tw-mb-4">
+                    <p class="tw-text-blue-800">
+                        <strong>Important:</strong> This library uses Tailwind CSS with the <code class="tw-bg-blue-100 tw-px-2 tw-py-1 tw-rounded">tw-</code> prefix.
+                    </p>
+                </div>
+                
+                <h3 class="tw-text-lg tw-font-semibold tw-text-gray-900 tw-mb-4">Configuration</h3>
+                <div class="tw-bg-gray-900 tw-text-green-400 tw-p-4 tw-rounded-lg tw-font-mono tw-text-sm tw-overflow-x-auto">
+                    <pre><code>// tailwind.config.js
+module.exports = {
+  prefix: 'tw-',
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/jsonforms-tailwind-renderers/**/*.{js,ts,jsx,tsx}"
+  ],
+  // ... rest of your config
+}</code></pre>
+                </div>
+                
+                <p class="tw-text-gray-600 tw-mt-4">
+                    All Tailwind classes in this library are prefixed with <code class="tw-bg-gray-100 tw-px-2 tw-py-1 tw-rounded">tw-</code> to avoid conflicts with your existing styles.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="tw-text-center tw-text-gray-600 tw-border-t tw-border-gray-200 tw-pt-8">
+            <p class="tw-mb-2">
+                Built with ❤️ using React, TypeScript, and Tailwind CSS
+            </p>
+            <p class="tw-text-sm">
+                Inspired by the <a href="https://jsonforms.io/" class="tw-text-primary-600 hover:tw-text-primary-700 tw-underline">JSONForms</a> project
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

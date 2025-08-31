@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONForms Tailwind Renderers - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.2s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                transform: translateY(10px); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                JSONForms Tailwind Renderers
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                A modern React component library that provides JSONForms-compatible renderers 
+                built with Tailwind CSS for beautiful, responsive forms.
+            </p>
+        </div>
+
+        <!-- Features Section -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">JSON Schema Support</h3>
+                <p class="text-gray-600">Full support for JSON Schema with validation, required fields, patterns, and constraints.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Flexible Layouts</h3>
+                <p class="text-gray-600">Multiple layout options including vertical, horizontal, and grouped layouts for optimal form organization.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Modern Design</h3>
+                <p class="text-gray-600">Built with Tailwind CSS for a clean, professional look with smooth animations and responsive design.</p>
+            </div>
+        </div>
+
+        <!-- Field Types Demo -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Supported Field Types</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="space-y-2">
+                    <h3 class="font-medium text-gray-900">Text Fields</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• String (default)</li>
+                        <li>• Email</li>
+                        <li>• Password</li>
+                        <li>• URL</li>
+                        <li>• Phone</li>
+                        <li>• Date</li>
+                        <li>• Time</li>
+                    </ul>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="font-medium text-gray-900">Numeric Fields</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Number</li>
+                        <li>• Integer</li>
+                        <li>• Min/Max validation</li>
+                        <li>• Step controls</li>
+                    </ul>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="font-medium text-gray-900">Complex Fields</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Boolean (checkbox)</li>
+                        <li>• Enum (dropdown)</li>
+                        <li>• Array (add/remove)</li>
+                        <li>• Object (nested)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Example -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Quick Start</h2>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                <pre class="text-green-400 text-sm"><code>import React, { useState } from 'react';
+import { JsonForms } from 'jsonforms-tailwind-renderers';
+
+const schema = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Full Name',
+      minLength: 2
+    },
+    email: {
+      type: 'string',
+      format: 'email',
+      title: 'Email Address'
+    }
+  },
+  required: ['name', 'email']
+};
+
+const uischema = {
+  type: 'VerticalLayout',
+  elements: [
+    { type: 'Control', scope: '#/properties/name' },
+    { type: 'Control', scope: '#/properties/email' }
+  ]
+};
+
+function App() {
+  const [data, setData] = useState({});
+  
+  return (
+    &lt;JsonForms
+      schema={schema}
+      uischema={uischema}
+      data={data}
+      onChange={setData}
+    /&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Installation -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Installation</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-medium text-gray-900 mb-2">1. Install the package</h3>
+                    <div class="bg-gray-900 rounded-lg p-3">
+                        <code class="text-green-400 text-sm">npm install jsonforms-tailwind-renderers</code>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-medium text-gray-900 mb-2">2. Install peer dependencies</h3>
+                    <div class="bg-gray-900 rounded-lg p-3">
+                        <code class="text-green-400 text-sm">npm install react react-dom tailwindcss</code>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-medium text-gray-900 mb-2">3. Configure Tailwind CSS</h3>
+                    <div class="bg-gray-900 rounded-lg p-3">
+                        <code class="text-green-400 text-sm">npx tailwindcss init -p</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-gray-500 mt-12">
+            <p class="mb-2">Built with ❤️ using React, TypeScript, and Tailwind CSS</p>
+            <p class="text-sm">
+                Inspired by the 
+                <a href="https://github.com/eclipsesource/jsonforms" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-500 ml-1">
+                    JSONForms project
+                </a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
