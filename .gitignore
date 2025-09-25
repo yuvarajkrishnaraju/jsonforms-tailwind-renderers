@@ -187,3 +187,4 @@ storybook-static/
 # Backup files
 *.bak
 *.backup
+dist-examples/

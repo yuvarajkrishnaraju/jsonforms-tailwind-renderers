@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
-import { JsonForms } from '../src/JsonForms';
+import TailwindJsonForms  from '../src/index';
+
+// Type definition for form data
+interface UserFormData {
+  username?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  profile?: {
+    firstName?: string;
+    lastName?: string;
+    age?: number;
+    interests?: string[];
+  };
+  terms?: boolean;
+}
 
 // Simple user registration schema
 const userSchema = {
@@ -118,7 +133,7 @@ const userUischema = {
 };
 
 export const IntegrationExample: React.FC = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<UserFormData>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = () => {
@@ -183,11 +198,11 @@ export const IntegrationExample: React.FC = () => {
         </div>
         
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <JsonForms
+          <TailwindJsonForms
             schema={userSchema}
             uischema={userUischema}
             data={formData}
-            onChange={setFormData}
+            onChange={(state) => setFormData(state.data as UserFormData)}
           />
           
           <div className="mt-8 flex justify-end space-x-3">

@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
+  prefix: 'tw-',
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
     "./examples/**/*.{js,ts,jsx,tsx}"
   ],
-  prefix: 'tw-',
   theme: {
     extend: {
       colors: {
@@ -54,4 +54,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

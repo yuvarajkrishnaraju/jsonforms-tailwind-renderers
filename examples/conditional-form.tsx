@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { JsonForms } from '../src/JsonForms';
+import TailwindJsonForms from '../src/index';
+import { UISchemaElement } from '@jsonforms/core';
 
 const conditionalSchema = {
   type: 'object',
@@ -215,7 +216,7 @@ const conditionalSchema = {
   required: ['accountType', 'contactInfo']
 };
 
-const conditionalUischema = {
+const conditionalUischema: any = {
   type: 'VerticalLayout',
   elements: [
     {
@@ -232,7 +233,7 @@ const conditionalUischema = {
       type: 'Group',
       label: 'Personal Information',
       rule: {
-        effect: 'SHOW',
+        effect: 'SHOW' as const,
         condition: {
           scope: '#/properties/accountType',
           schema: { const: 'personal' }
@@ -254,7 +255,7 @@ const conditionalUischema = {
       type: 'Group',
       label: 'Business Information',
       rule: {
-        effect: 'SHOW',
+        effect: 'SHOW' as const,
         condition: {
           scope: '#/properties/accountType',
           schema: { enum: ['business', 'enterprise'] }
@@ -283,7 +284,7 @@ const conditionalUischema = {
       type: 'Group',
       label: 'Enterprise Information',
       rule: {
-        effect: 'SHOW',
+        effect: 'SHOW' as const,
         condition: {
           scope: '#/properties/accountType',
           schema: { const: 'enterprise' }
@@ -347,7 +348,7 @@ export const ConditionalFormExample: React.FC = () => {
           </p>
         </div>
         
-        <JsonForms
+        <TailwindJsonForms
           schema={conditionalSchema}
           uischema={conditionalUischema}
           data={data}

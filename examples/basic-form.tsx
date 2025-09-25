@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { JsonForms } from '../src/JsonForms';
+import TailwindJsonForms from '../src/index';
 
 const basicSchema = {
   type: 'object',
@@ -102,7 +102,7 @@ export const BasicFormExample: React.FC = () => {
           </p>
         </div>
         
-        <JsonForms
+        <TailwindJsonForms
           schema={basicSchema}
           uischema={basicUischema}
           data={data}

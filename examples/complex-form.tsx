@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { JsonForms } from '../src/JsonForms';
+import TailwindJsonForms from '../src/index';
 
 const complexSchema = {
   type: 'object',
@@ -328,7 +328,7 @@ export const ComplexFormExample: React.FC = () => {
           </p>
         </div>
         
-        <JsonForms
+        <TailwindJsonForms
           schema={complexSchema}
           uischema={complexUischema}
           data={data}
