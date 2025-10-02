@@ -1,7 +1,21 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
-import * as monaco from 'monaco-editor';4
-import { validateSnowflakeSQL, ValidationError, ValidationResult } from 'snowflake-sql-validator';
+
+// Types for validation results (kept minimal to avoid heavy static imports)
+export interface ValidationError {
+  message: string;
+  severity: 'error' | 'warning' | 'info';
+  startLine: number;
+  startColumn: number;
+  endLine: number;
+  endColumn: number;
+  suggestions?: string[];
+}
+
+export interface ValidationResult {
+  timeTaken?: number;
+  errors: ValidationError[];
+}
 
 
 interface SqlEditorProps {
@@ -53,14 +67,17 @@ export const SqlEditor: React.FC<SqlEditorProps> = ({
     };
   }, [initialValue]);
 
-  // Initialize Monaco Editor with SQL language support
-  useEffect(() => {
-    if (monaco) {
+  // Initialize Monaco Editor with SQL language support on mount to avoid bundling monaco directly
+  const handleEditorDidMount = useCallback(
+    (editor: any, monacoApi: any) => {
+      editorRef.current = editor;
+      monacoRef.current = monacoApi;
+
       // Configure SQL language features
-      monaco.languages.register({ id: 'sql' });
+      monacoApi.languages.register({ id: 'sql' });
 
       // Add SQL keywords for better syntax highlighting
-      monaco.languages.setMonarchTokensProvider('sql', {
+      monacoApi.languages.setMonarchTokensProvider('sql', {
         keywords: [
           // Uppercase keywords
           'SELECT',
@@ -369,7 +386,7 @@ export const SqlEditor: React.FC<SqlEditorProps> = ({
       });
 
       // Configure SQL language configuration
-      monaco.languages.setLanguageConfiguration('sql', {
+      monacoApi.languages.setLanguageConfiguration('sql', {
         comments: {
           lineComment: '--',
           blockComment: ['/*', '*/']
@@ -396,8 +413,39 @@ export const SqlEditor: React.FC<SqlEditorProps> = ({
           { open: '`', close: '`' }
         ]
       });
-    }
-  }, []);
+      // Configure custom theme for modern scrollbars
+      monacoApi.editor.defineTheme('modern-light', {
+        base: 'vs',
+        inherit: true,
+        rules: [],
+        colors: {
+          'scrollbarSlider.background': '#d1d5db',
+          'scrollbarSlider.hoverBackground': '#9ca3af',
+          'scrollbarSlider.activeBackground': '#6b7280',
+          'scrollbar.shadow': 'transparent',
+          'editor.background': '#ffffff',
+          'editor.foreground': '#1f2937',
+          'editor.lineHighlightBackground': '#f9fafb',
+          'editor.lineHighlightBorder': '#e5e7eb',
+          'editorCursor.foreground': '#3b82f6',
+          'editor.selectionBackground': '#dbeafe',
+          'editor.inactiveSelectionBackground': '#f1f5f9'
+        }
+      });
+
+      // Apply the custom theme
+      monacoApi.editor.setTheme('modern-light');
+
+      // Set initial value
+      if (initialValue) {
+        editor.setValue(initialValue);
+      }
+
+      // Add error markers
+      updateErrorMarkers();
+    },
+    [initialValue, updateErrorMarkers]
+  );
 
   // SQL validation function using new API
   const validateSQL = useCallback(
@@ -407,8 +455,10 @@ export const SqlEditor: React.FC<SqlEditorProps> = ({
       }
 
       try {
-          setIsValidating(true);
-        const res = validateSnowflakeSQL(sql);
+        setIsValidating(true);
+        // Lazy-load the validator to keep it out of initial bundle
+        const { validateSnowflakeSQL } = await import('snowflake-sql-validator');
+        const res: ValidationResult = validateSnowflakeSQL(sql);
         setIsValidating(false);
         setResult(res);
         // Call onError callback if provided
@@ -485,45 +535,7 @@ export const SqlEditor: React.FC<SqlEditorProps> = ({
     [onChange, validate, debouncedValidation]
   );
 
-  // Handle editor mount
-  const handleEditorDidMount = useCallback(
-    (editor: any, monaco: any) => {
-      editorRef.current = editor;
-      monacoRef.current = monaco;
-
-      // Set initial value
-      if (initialValue) {
-        editor.setValue(initialValue);
-      }
-
-      // Configure custom theme for modern scrollbars
-      monaco.editor.defineTheme('modern-light', {
-        base: 'vs',
-        inherit: true,
-        rules: [],
-        colors: {
-          'scrollbarSlider.background': '#d1d5db',
-          'scrollbarSlider.hoverBackground': '#9ca3af',
-          'scrollbarSlider.activeBackground': '#6b7280',
-          'scrollbar.shadow': 'transparent',
-          'editor.background': '#ffffff',
-          'editor.foreground': '#1f2937',
-          'editor.lineHighlightBackground': '#f9fafb',
-          'editor.lineHighlightBorder': '#e5e7eb',
-          'editorCursor.foreground': '#3b82f6',
-          'editor.selectionBackground': '#dbeafe',
-          'editor.inactiveSelectionBackground': '#f1f5f9'
-        }
-      });
-
-      // Apply the custom theme
-      monaco.editor.setTheme('modern-light');
-
-      // Add error markers
-      updateErrorMarkers();
-    },
-    [initialValue]
-  );
+  // (moved setup into the onMount above)
 
   // Update error markers in the editor
   const updateErrorMarkers = useCallback(() => {

@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from "webpack";
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,8 +14,46 @@ export default {
   entry: './examples/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist-examples'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
     clean: true,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        monaco: {
+          test: /[\\/]node_modules[\\/]@monaco-editor[\\/]/,
+          name: 'monaco',
+          chunks: 'all',
+          priority: 20,
+        },
+        snowflake: {
+          test: /[\\/]node_modules[\\/]snowflake-sql-validator[\\/]/,
+          name: 'snowflake',
+          chunks: 'all',
+          priority: 20,
+        },
+        headlessui: {
+          test: /[\\/]node_modules[\\/]@headlessui[\\/]/,
+          name: 'headlessui',
+          chunks: 'all',
+          priority: 20,
+        },
+        reactSelect: {
+          test: /[\\/]node_modules[\\/]react-select[\\/]/,
+          name: 'react-select',
+          chunks: 'all',
+          priority: 20,
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+          priority: 10,
+        },
+      },
+    },
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -51,6 +90,15 @@ export default {
       template: './examples/index.html',
       filename: 'index.html',
     }),
+    new MonacoWebpackPlugin({
+      languages: ['sql'],
+      features: [
+        'bracketMatching',
+        'clipboard',
+        'find',
+        'wordHighlighter'
+      ]
+    }),
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
@@ -65,5 +113,10 @@ export default {
     open: true,
     historyApiFallback: true,
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-cheap-module-source-map',
+  performance: {
+    hints: 'warning',
+    maxEntrypointSize: 250000,
+    maxAssetSize: 250000,
+  },
 };

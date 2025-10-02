@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TailwindJsonForms from '../src/index';
+import TailwindJsonForms from '../src/index-light';
 
 const complexSchema = {
   type: 'object',
@@ -317,13 +317,13 @@ export const ComplexFormExample: React.FC = () => {
   const [data, setData] = useState({});
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+    <div className="tw-min-h-screen tw-bg-gray-50 tw-py-8">
+      <div className="tw-max-w-6xl tw-mx-auto tw-px-4">
+        <div className="tw-text-center tw-mb-8">
+          <h1 className="tw-text-3xl tw-font-bold tw-text-gray-900 tw-mb-2">
             Complex Registration Form
           </h1>
-          <p className="text-gray-600">
+          <p className="tw-text-gray-600">
             This example demonstrates complex field types including arrays, objects, and nested structures
           </p>
         </div>
@@ -335,9 +335,9 @@ export const ComplexFormExample: React.FC = () => {
           onChange={setData}
         />
         
-        <div className="mt-8 p-4 bg-white rounded-lg border border-gray-200">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Form Data:</h3>
-          <pre className="text-sm text-gray-600 overflow-auto max-h-96">
+        <div className="tw-mt-8 tw-p-4 tw-bg-white tw-rounded-lg tw-border tw-border-gray-200">
+          <h3 className="tw-text-lg tw-font-medium tw-text-gray-900 tw-mb-2">Form Data:</h3>
+          <pre className="tw-text-sm tw-text-gray-600 tw-overflow-auto tw-max-h-96">
             {JSON.stringify(data, null, 2)}
           </pre>
         </div>

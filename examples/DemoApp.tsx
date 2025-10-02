@@ -32,22 +32,22 @@ export const DemoApp: React.FC = () => {
   const SelectedComponent = examples.find(ex => ex.id === selectedExample)?.component || BasicFormExample;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="tw-min-h-screen tw-bg-gray-50">
       {/* Navigation Header */}
-      <nav className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold text-gray-900">
+      <nav className="tw-bg-white tw-shadow-sm tw-border-b tw-border-gray-200">
+        <div className="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
+          <div className="tw-flex tw-justify-between tw-h-16">
+            <div className="tw-flex tw-items-center">
+              <h1 className="tw-text-xl tw-font-semibold tw-text-gray-900">
                 JSONForms Tailwind Renderers
               </h1>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="tw-flex tw-items-center tw-space-x-4">
               <a
                 href="https://github.com/eclipsesource/jsonforms"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                className="tw-text-gray-500 hover:tw-text-gray-700 tw-px-3 tw-py-2 tw-rounded-md tw-text-sm tw-font-medium"
               >
                 JSONForms
               </a>
@@ -57,18 +57,18 @@ export const DemoApp: React.FC = () => {
       </nav>
 
       {/* Example Selector */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8">
+      <div className="tw-bg-white tw-border-b tw-border-gray-200">
+        <div className="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
+          <div className="tw-flex tw-space-x-8">
             {examples.map((example) => (
               <button
                 key={example.id}
                 onClick={() => setSelectedExample(example.id as ExampleType)}
                 className={`
-                  py-4 px-1 border-b-2 font-medium text-sm
+                  tw-py-4 tw-px-1 tw-border-b-2 tw-font-medium tw-text-sm
                   ${selectedExample === example.id
-                    ? 'border-primary-500 text-primary-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    ? 'tw-border-primary-500 tw-text-primary-600'
+                    : 'tw-border-transparent tw-text-gray-500 hover:tw-text-gray-700 hover:tw-border-gray-300'
                   }
                 `}
               >
@@ -80,33 +80,33 @@ export const DemoApp: React.FC = () => {
       </div>
 
       {/* Example Description */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="text-gray-600">
+      <div className="tw-bg-white tw-border-b tw-border-gray-200">
+        <div className="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8 tw-py-4">
+          <p className="tw-text-gray-600">
             {examples.find(ex => ex.id === selectedExample)?.description}
           </p>
         </div>
       </div>
 
       {/* Example Content */}
-      <div className="py-8">
+      <div className="tw-py-8">
         <SelectedComponent />
       </div>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
-        <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-gray-500 text-sm">
+      <footer className="tw-bg-white tw-border-t tw-border-gray-200 tw-mt-16">
+        <div className="tw-max-w-7xl tw-mx-auto tw-py-8 tw-px-4 sm:tw-px-6 lg:tw-px-8">
+          <div className="tw-text-center">
+            <p className="tw-text-gray-500 tw-text-sm">
               Built with React, TypeScript, and Tailwind CSS
             </p>
-            <p className="text-gray-400 text-xs mt-2">
+            <p className="tw-text-gray-400 tw-text-xs tw-mt-2">
               Inspired by the{' '}
               <a
                 href="https://github.com/eclipsesource/jsonforms"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-600 hover:text-primary-500"
+                className="tw-text-primary-600 hover:tw-text-primary-500"
               >
                 JSONForms project
               </a>

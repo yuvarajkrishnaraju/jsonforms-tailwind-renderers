@@ -155,27 +155,27 @@ export const IntegrationExample: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="tw-min-h-screen tw-bg-gray-50 tw-py-8">
+        <div className="tw-max-w-2xl tw-mx-auto tw-px-4">
+          <div className="tw-bg-white tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200 tw-p-8 tw-text-center">
+            <div className="tw-w-16 tw-h-16 tw-bg-green-100 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-mx-auto tw-mb-4">
+              <svg className="tw-w-8 tw-h-8 tw-text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Registration Successful!</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="tw-text-2xl tw-font-bold tw-text-gray-900 tw-mb-2">Registration Successful!</h2>
+            <p className="tw-text-gray-600 tw-mb-6">
               Thank you for registering. Your account has been created successfully.
             </p>
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium text-gray-900">Submitted Data:</h3>
-              <pre className="text-sm text-gray-600 bg-gray-50 p-4 rounded-md overflow-auto text-left">
+            <div className="tw-space-y-4">
+              <h3 className="tw-text-lg tw-font-medium tw-text-gray-900">Submitted Data:</h3>
+              <pre className="tw-text-sm tw-text-gray-600 tw-bg-gray-50 tw-p-4 tw-rounded-md tw-overflow-auto tw-text-left">
                 {JSON.stringify(formData, null, 2)}
               </pre>
             </div>
             <button
               onClick={handleReset}
-              className="mt-6 px-6 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              className="tw-mt-6 tw-px-6 tw-py-2 tw-bg-primary-600 tw-text-white tw-rounded-md hover:tw-bg-primary-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-primary-500"
             >
               Create Another Account
             </button>
@@ -186,18 +186,18 @@ export const IntegrationExample: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+    <div className="tw-min-h-screen tw-bg-gray-50 tw-py-8">
+      <div className="tw-max-w-4xl tw-mx-auto tw-px-4">
+        <div className="tw-text-center tw-mb-8">
+          <h1 className="tw-text-3xl tw-font-bold tw-text-gray-900 tw-mb-2">
             User Registration Form
           </h1>
-          <p className="text-gray-600">
+          <p className="tw-text-gray-600">
             This example shows how to integrate JSONForms Tailwind Renderers in a React application
           </p>
         </div>
         
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="tw-bg-white tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200 tw-p-6">
           <TailwindJsonForms
             schema={userSchema}
             uischema={userUischema}
@@ -205,10 +205,10 @@ export const IntegrationExample: React.FC = () => {
             onChange={(state) => setFormData(state.data as UserFormData)}
           />
           
-          <div className="mt-8 flex justify-end space-x-3">
+          <div className="tw-mt-8 tw-flex tw-justify-end tw-space-x-3">
             <button
               onClick={handleReset}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              className="tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-700 tw-bg-white tw-border tw-border-gray-300 tw-rounded-md hover:tw-bg-gray-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-primary-500"
             >
               Reset Form
             </button>
@@ -228,9 +228,9 @@ export const IntegrationExample: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-8 p-4 bg-white rounded-lg border border-gray-200">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Form Data (Live Preview):</h3>
-          <pre className="text-sm text-gray-600 overflow-auto max-h-64">
+        <div className="tw-mt-8 tw-p-4 tw-bg-white tw-rounded-lg tw-border tw-border-gray-200">
+          <h3 className="tw-text-lg tw-font-medium tw-text-gray-900 tw-mb-2">Form Data (Live Preview):</h3>
+          <pre className="tw-text-sm tw-text-gray-600 tw-overflow-auto tw-max-h-64">
             {JSON.stringify(formData, null, 2)}
           </pre>
         </div>
