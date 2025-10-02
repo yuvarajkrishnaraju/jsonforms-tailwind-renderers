@@ -444,7 +444,7 @@ export const SqlEditor: React.FC<SqlEditorProps> = ({
       // Add error markers
       updateErrorMarkers();
     },
-    [initialValue, updateErrorMarkers]
+    [initialValue]
   );
 
   // SQL validation function using new API

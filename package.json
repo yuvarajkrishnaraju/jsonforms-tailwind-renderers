@@ -15,7 +15,10 @@
     "dev": "rollup -c -w",
     "clean": "rimraf dist",
     "build:css": "npx tailwindcss -i ./src/styles.css -o ./src/index.css",
-    "prepublishOnly": "npm run clean && npm run build",
+    "build:all": "npm run clean && npm run build:css && npm run build",
+    "prepublishOnly": "npm run build:all",
+    "publish:public": "npm publish --access public",
+    "release": "npm run build:all && npm run publish:public",
     "examples:dev": "webpack serve --config webpack.config.js",
     "examples:build": "webpack --config webpack.config.js",
     "examples:start": "npm run examples:dev"
@@ -26,6 +29,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^11.0.0",
     "@tailwindcss/postcss": "^4.1.12",
